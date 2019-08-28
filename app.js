@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 //Routers
 const indexRouter = require('./routes/index');
 const movieRouter = require('./routes/movie');
+const directorRouter = require('./routes/director');
 
 //DB Connection
 const db = require('./helpers/db')();
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/api/movie', movieRouter);
+app.use('/api/director', directorRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

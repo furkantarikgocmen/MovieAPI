@@ -8,7 +8,7 @@ router.delete('/:movie_id', (req, res, next) => {
   const promise = Movie.findByIdAndRemove(req.params.movie_id);
   promise
     .then(data => {
-      res.json({ status: 1 });
+      res.json({ status: 1, data });
     })
     .catch(err => {
       //res.json(err);
@@ -23,7 +23,7 @@ router.put('/:movie_id', (req, res, next) => {
   }); //new : true = Güncellenmiş halini dön
   promise
     .then(data => {
-      res.json(data);
+      res.json({ status: 1, data });
     })
     .catch(err => {
       //res.json(err);
@@ -38,7 +38,7 @@ router.get('/top10', (req, res, next) => {
     .sort({ imdb_score: -1 });
   promise
     .then(data => {
-      res.json(data);
+      res.json({ status: 1, data });
     })
     .catch(err => {
       next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
@@ -50,7 +50,7 @@ router.get('/:movie_id', (req, res, next) => {
   const promise = Movie.findById(req.params.movie_id);
   promise
     .then(data => {
-      res.json(data);
+      res.json({ status: 1, data });
     })
     .catch(err => {
       //res.json(err);
@@ -60,12 +60,28 @@ router.get('/:movie_id', (req, res, next) => {
 
 /* GET movie listing. */
 router.get('/', (req, res, next) => {
-  const promise = Movie.find({});
+  const promise = Movie.aggregate([
+    {
+      $lookup: {
+        from: 'directors',
+        localField: 'director_id',
+        foreignField: '_id',
+        as: 'director'
+      }
+    },
+    {
+      $unwind: {
+        path: '$director',
+        preserveNullAndEmptyArrays: true //Bu olmazsa Yönetmeni Olmayan Filmler Gelmiyor.
+      }
+    }
+  ]);
   promise
     .then(data => {
-      res.json(data);
+      res.json({ status: 1, data });
     })
     .catch(err => {
+      console.log(err);
       next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
     });
 });
@@ -80,11 +96,16 @@ router.post('/', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({ status: 0, message: 'Movies Was Not Saved !', code: 404, err });
+      next({
+        status: 0,
+        message: 'Movies Was Not Saved !',
+        code: 404,
+        err
+      });
     });
 });
 
-/* GET movie listing. */
+/* GET movie between listing. */
 router.get('/between/:start_year/:end_year', (req, res, next) => {
   const { start_year, end_year } = req.params;
   const promise = Movie.find({
@@ -92,7 +113,7 @@ router.get('/between/:start_year/:end_year', (req, res, next) => {
   });
   promise
     .then(data => {
-      res.json(data);
+      res.json({ status: 1, data });
     })
     .catch(err => {
       next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
