@@ -11,8 +11,9 @@ router.delete('/:movie_id', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
+      //next({ status: 0, message: 'Movies Was Not Deleted !', code: 404, err });
       //res.json(err);
-      next({ status: 0, message: 'Movies Was Not Deleted !', code: 404, err });
+      next(err);
     });
 });
 
@@ -26,8 +27,9 @@ router.put('/:movie_id', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
+      //next({ status: 0, message: 'Movies Was Not Updated !', code: 404, err });
       //res.json(err);
-      next({ status: 0, message: 'Movies Was Not Updated !', code: 404, err });
+      next(err);
     });
 });
 
@@ -41,7 +43,9 @@ router.get('/top10', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
+      //next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -53,8 +57,9 @@ router.get('/:movie_id', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
+      //next({ status: 0, message: 'The Movie Was Not Found !', code: 404, err });
       //res.json(err);
-      next({ status: 0, message: 'The Movie Was Not Found !', code: 404, err });
+      next(err);
     });
 });
 
@@ -81,8 +86,9 @@ router.get('/', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      console.log(err);
-      next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
+      //next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -96,12 +102,14 @@ router.post('/', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({
+      /*next({
         status: 0,
         message: 'Movies Was Not Saved !',
         code: 404,
         err
-      });
+      });*/
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -116,7 +124,9 @@ router.get('/between/:start_year/:end_year', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
+      //next({ status: 0, message: 'Movies Was Not Found !', code: 404, err });
+      //res.json(err);
+      next(err);
     });
 });
 

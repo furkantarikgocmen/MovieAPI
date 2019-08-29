@@ -14,6 +14,9 @@ const directorRouter = require('./routes/director');
 //DB Connection
 const db = require('./helpers/db')();
 
+//Config file
+const config = require('./config');
+
 const app = express();
 
 app.use(logger('dev'));
@@ -26,7 +29,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//API Secret Key
+app.set('api_secret_key', config.api_secret_key);
+
+//Middleware
+const verifyToken = require('./middleware/verifyToken');
+
 app.use('/', indexRouter);
+app.use('/api', verifyToken);
 app.use('/api/movie', movieRouter);
 app.use('/api/director', directorRouter);
 

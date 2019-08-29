@@ -17,7 +17,9 @@ router.post('/', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({ status: 0, message: 'Director Was Not Saved !', code: 404, err });
+      //next({ status: 0, message: 'Director Was Not Saved !', code: 404, err });
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -67,7 +69,9 @@ router.get('/', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({ status: 0, message: 'Director Was Not Saved !', code: 404, err });
+      //next({ status: 0, message: 'Director Was Not Saved !', code: 404, err });
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -122,7 +126,9 @@ router.get('/:director_id', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      next({ status: 0, message: 'Director Was Not Saved !', code: 404, err });
+      //next({ status: 0, message: 'Director Was Not Saved !', code: 404, err });
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -136,13 +142,14 @@ router.put('/:director_id', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      //res.json(err);
-      next({
+      /*next({
         status: 0,
         message: 'Director Was Not Updated !',
         code: 404,
         err
-      });
+      });*/
+      //res.json(err);
+      next(err);
     });
 });
 
@@ -154,13 +161,14 @@ router.delete('/:director_id', (req, res, next) => {
       res.json({ status: 1, data });
     })
     .catch(err => {
-      //res.json(err);
-      next({
+      /*next({
         status: 0,
         message: 'Director Was Not Deleted !',
         code: 404,
         err
-      });
+      });*/
+      //res.json(err);
+      next(err);
     });
 });
 
