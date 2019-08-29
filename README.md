@@ -1,6 +1,37 @@
 # MovieAPI
 
-# Movies
+## Express Based Simple REST API
+
+### How To Run :
+
+```
+$ git clone github.com/furkantarikgocmen/MovieAPI.git
+$ npm install
+$ npm run start
+```
+
+### How To Use:
+
+```
+1- Look At http://localhost:3000/
+2- Create a New User (/register)
+3- Generate a token (/authenticate)
+4- Add Generated Token to Query
+
+Request Header = ['x-access-token'] or
+Request Body = {token : 'generatedToken'} or
+request.query.token = http://localhost:3000/api/movie?token=generatedToken
+```
+
+### Dependencies
+
+- **MongoDB**
+
+### Do Not Forget Change secret_api_key In ./config.js
+
+- **secret_api_key is Elfida...**
+
+## Movies
 
 | Route                                    | HTTP Verb | POST body                                                                                         | Description                   |
 | ---------------------------------------- | --------- | ------------------------------------------------------------------------------------------------- | ----------------------------- |
@@ -12,7 +43,7 @@
 | /api/movie/top10                         | `GET`     | Empty                                                                                             | Get the top 10 movies.        |
 | /api/movie/between/:start_year/:end_year | `GET`     | Empty                                                                                             | Movies between two dates.     |
 
-# Directors
+## Directors
 
 | Route                                  | HTTP Verb | POST body                                         | Description                      |
 | -------------------------------------- | --------- | ------------------------------------------------- | -------------------------------- |
@@ -23,7 +54,7 @@
 | /api/director/:director_id             | `DELETE`  | Empty                                             | Delete a director.               |
 | /api/director/:director_id/best10movie | `GET`     | Empty                                             | The director's top 10 films.     |
 
-# Index
+## Index
 
 | Route         | HTTP Verb | POST body                            | Description        |
 | ------------- | --------- | ------------------------------------ | ------------------ |
