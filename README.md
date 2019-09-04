@@ -10,6 +10,15 @@ $ npm install
 $ npm run start
 ```
 
+### Dependencies
+
+- **MongoDB**
+
+### Don't Forget Change secret_api_key In ./config.js
+
+- **secret_api_key is Elfida...**
+
+
 ### How To Use:
 
 ```
@@ -22,14 +31,6 @@ Request Header = ['x-access-token'] or
 Request Body = {token : 'generatedToken'} or
 request.query.token = http://localhost:3000/api/movie?token=generatedToken
 ```
-
-### Dependencies
-
-- **MongoDB**
-
-### Don't Forget Change secret_api_key In ./config.js
-
-- **secret_api_key is Elfida...**
 
 ## Movies
 
