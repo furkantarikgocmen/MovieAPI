@@ -27,7 +27,7 @@ request.query.token = http://localhost:3000/api/movie?token=generatedToken
 
 - **MongoDB**
 
-### Do Not Forget Change secret_api_key In ./config.js
+### Don't Forget Change secret_api_key In ./config.js
 
 - **secret_api_key is Elfida...**
 
