@@ -28,7 +28,7 @@ router.post('/register', (req, res, next) => {
     const promise = user.save();
     promise
       .then(data => {
-        res.json({ status: 1, data });
+        res.json({ status: 1 }); //password hash de gidiyor. o yüzden datayı kaldırdım.
       })
       .catch(err => {
         //res.json(err);
